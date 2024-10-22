@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useEffect } from 'react';
 import { AlertCircle, ArrowDownCircle, Settings, Wallet } from 'lucide-react';
 import {
