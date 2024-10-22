@@ -28,7 +28,11 @@ interface TokenSelectProps {
 }
 
 // Token selection dropdown component
-const TokenSelect: React.FC<TokenSelectProps> = ({ token, onSelect, tokens }) => (
+const TokenSelect = ({ 
+  token, 
+  onSelect, 
+  tokens 
+}: TokenSelectProps) => (
   <div className="relative w-full">
     <button 
       className="w-full flex items-center justify-between bg-gray-800 rounded-lg p-4 hover:bg-gray-700"
