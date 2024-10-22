@@ -1,4 +1,4 @@
-import '@/styles/globals.css'
+import '../styles/globals.css'  // Changed from '@/styles/globals.css'
 
 export const metadata = {
   title: 'DEX Exchange',
