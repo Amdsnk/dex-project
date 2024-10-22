@@ -124,7 +124,7 @@ const SwapInterface = () => {
     }
   };
 
- const handleSwap = async () => {
+const handleSwap = async () => {
   if (!connected || !tokenIn || !tokenOut || !amount) return;
 
   const ethereum = window.ethereum as Ethereum | undefined;
@@ -155,7 +155,7 @@ const SwapInterface = () => {
   } finally {
     setLoading(false);
   }
-};
+}
 
   return (
     <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center p-4">
