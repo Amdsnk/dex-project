@@ -124,31 +124,38 @@ const SwapInterface = () => {
     }
   };
 
-  const handleSwap = async () => {
-    if (!connected || !tokenIn || !tokenOut || !amount) return;
-    
-    try {
-      setLoading(true);
-      const transactionParameters = {
-        to: tokenIn.address,
-        from: account,
-        value: '0x00',
-        data: '0x',
-      };
+ const handleSwap = async () => {
+  if (!connected || !tokenIn || !tokenOut || !amount) return;
 
-      const txHash = await window.ethereum.request({
-        method: 'eth_sendTransaction',
-        params: [transactionParameters],
-      });
+  const ethereum = window.ethereum as Ethereum | undefined;
+  if (!ethereum) {
+    alert('MetaMask is not installed. Please install it to use this feature.');
+    return;
+  }
+  
+  try {
+    setLoading(true);
+    const transactionParameters = {
+      to: tokenIn.address,
+      from: account,
+      value: '0x00',
+      data: '0x',
+    };
 
-      alert(`Transaction submitted: ${txHash}`);
-    } catch (error) {
-      console.error('Error executing swap:', error);
-      alert('Swap failed. Please try again.');
-    } finally {
-      setLoading(false);
-    }
-  };
+    // Send the transaction only if ethereum is defined
+    const txHash = await ethereum.request({
+      method: 'eth_sendTransaction',
+      params: [transactionParameters],
+    });
+
+    alert(`Transaction submitted: ${txHash}`);
+  } catch (error) {
+    console.error('Error executing swap:', error);
+    alert('Swap failed. Please try again.');
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center p-4">
