@@ -14,8 +14,21 @@ import {
   AlertTitle,
 } from '@/components/ui/alert';
 
+interface Token {
+  symbol: string;
+  address: string;
+  logo: string;
+  balance: string;
+}
+
+interface TokenSelectProps {
+  token: Token | null;
+  onSelect: (token: Token | null) => void;
+  tokens: Token[];
+}
+
 // Token selection dropdown component
-const TokenSelect = ({ token, onSelect, tokens }) => (
+const TokenSelect: React.FC<TokenSelectProps> = ({ token, onSelect, tokens }) => (
   <div className="relative w-full">
     <button 
       className="w-full flex items-center justify-between bg-gray-800 rounded-lg p-4 hover:bg-gray-700"
