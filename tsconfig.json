@@ -16,18 +16,9 @@
     "incremental": true,
     "typeRoots": ["./node_modules/@types", "./src"]
   },
-  "include": ["src", "global.d.ts"]
-}
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-  },
   "include": [
+    "src",
+    "global.d.ts",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
