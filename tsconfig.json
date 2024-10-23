@@ -18,7 +18,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "typeRoots": ["./node_modules/@types", "./src"]
+    "typeRoots": ["./node_modules/@types", "./src/types"]
   },
   "include": [
     "src",
@@ -26,8 +26,6 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/types/**/*.d.ts",
-    ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }
