@@ -125,33 +125,38 @@ const SwapInterface: React.FC = () => {
     }
   };
 
-  const handleSwap = async () => {
-    if (!connected || !tokenIn || !tokenOut || !amount) return;
-    
-    try {
-      setLoading(true);
-      // Example of sending a transaction using window.ethereum
-      const transactionParameters = {
-        to: tokenIn.address,
-        from: account,
-        value: '0x00',
-        data: '0x', // Contract interaction data would go here
-      };
+ const handleSwap = async () => {
+  if (!connected || !tokenIn || !tokenOut || !amount) return;
 
-      // Send the transaction
-      const txHash = await window.ethereum.request({
-        method: 'eth_sendTransaction',
-        params: [transactionParameters],
-      });
+  const ethereum = window.ethereum;
+  if (!ethereum) {
+    alert('MetaMask is not installed. Please install it to use this feature.');
+    return;
+  }
+  
+  try {
+    setLoading(true);
+    const transactionParameters = {
+      to: tokenIn.address,
+      from: account,
+      value: '0x00',
+      data: '0x', // Add actual contract interaction data here.
+    };
 
-      alert(`Transaction submitted: ${txHash}`);
-    } catch (error) {
-      console.error('Error executing swap:', error);
-      alert('Swap failed. Please try again.');
-    } finally {
-      setLoading(false);
-    }
-  };
+    // Send the transaction safely
+    const txHash = await ethereum.request({
+      method: 'eth_sendTransaction',
+      params: [transactionParameters],
+    });
+
+    alert(`Transaction submitted: ${txHash}`);
+  } catch (error) {
+    console.error('Error executing swap:', error);
+    alert('Swap failed. Please try again.');
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center p-4">
